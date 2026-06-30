@@ -1,0 +1,20 @@
+//2367. Number of Arithmetic Triplets
+import java.util.HashSet;
+
+class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        HashSet<Integer> seen = new HashSet<>();
+        for (int num : nums) {
+            seen.add(num);
+        }
+        
+        int count = 0;
+        for (int num : nums) {
+            // Check if both next steps exist in the set
+            if (seen.contains(num + diff) && seen.contains(num + 2 * diff)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
