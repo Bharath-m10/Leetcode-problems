@@ -1,0 +1,19 @@
+class Solution {
+    public int maxPower(String s) {
+        int maxPower = 1;
+        int currentPower = 1;
+
+        for (int i = 1; i < s.length(); i++) {
+            // Check if the current character is the same as the previous one
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                currentPower++;
+                maxPower = Math.max(maxPower, currentPower);
+            } else {
+                // Reset the count if they don't match
+                currentPower = 1;
+            }
+        }
+        
+        return maxPower;
+    }
+}
