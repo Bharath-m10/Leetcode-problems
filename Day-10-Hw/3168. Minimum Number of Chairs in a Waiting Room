@@ -1,0 +1,18 @@
+class Solution {
+    public int minimumChairs(String s) {
+        int maxChairs = 0;
+        int currentPeople = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (c == 'E') {
+                currentPeople++;
+                // Update the maximum chairs needed if the current people exceed it
+                maxChairs = Math.max(maxChairs, currentPeople);
+            } else if (c == 'L') {
+                currentPeople--;
+            }
+        }
+        
+        return maxChairs;
+    }
+}
