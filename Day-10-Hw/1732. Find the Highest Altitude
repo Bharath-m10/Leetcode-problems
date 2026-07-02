@@ -1,0 +1,15 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int maxAltitude = 0;
+        int currentAltitude = 0;
+        
+        for (int g : gain) {
+            // Calculate the new altitude at each point
+            currentAltitude += g;
+            // Update the maximum altitude seen so far
+            maxAltitude = Math.max(maxAltitude, currentAltitude);
+        }
+        
+        return maxAltitude;
+    }
+}
