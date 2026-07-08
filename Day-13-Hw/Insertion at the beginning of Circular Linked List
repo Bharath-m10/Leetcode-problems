@@ -1,0 +1,18 @@
+class Solution {
+    public Node insertAtBeginning(Node tail, int key) {
+        Node newNode = new Node(key);
+        
+        if (tail == null) {
+            // Empty list: new node points to itself
+            newNode.next = newNode;
+            return newNode;
+        }
+        
+        // Insert at beginning: new node points to current head (tail.next)
+        newNode.next = tail.next;
+        // Update tail to point to new node
+        tail.next = newNode;
+        
+        return newNode; // Return the new head
+    }
+}
