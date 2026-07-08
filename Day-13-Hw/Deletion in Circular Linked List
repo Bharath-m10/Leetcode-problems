@@ -1,0 +1,56 @@
+/*
+class Node {
+    int data;
+    Node next;
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+class Solution {
+    Node deleteNode(Node head, int key) {
+        if (head == null) {
+            return null;
+        }
+
+        // Case 1: If the list has only one node
+        if (head.next == head) {
+            if (head.data == key) {
+                return null; // List becomes empty
+            }
+            return head; // Key not found, return as is
+        }
+
+        Node curr = head;
+        Node prev = null;
+
+        // Case 2: Key is the head node
+        if (curr.data == key) {
+            // Find the last node to update its 'next' pointer
+            while (curr.next != head) {
+                curr = curr.next;
+            }
+            // Update head to the next node
+            head = head.next;
+            // Connect last node to the new head
+            curr.next = head;
+            return head;
+        }
+
+        // Case 3: Key is somewhere else in the list
+        // Traverse to find the node
+        while (curr.next != head && curr.next.data != key) {
+            curr = curr.next;
+        }
+
+        // Check if key was found
+        if (curr.next.data == key) {
+            Node toDelete = curr.next;
+            // Bypass the node to delete
+            curr.next = toDelete.next;
+        }
+
+        return head;
+    }
+}
