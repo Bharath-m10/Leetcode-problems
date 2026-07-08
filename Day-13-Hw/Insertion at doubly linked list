@@ -1,0 +1,54 @@
+/*
+class Node
+{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data)
+    {
+        this.data = data;
+        next = prev = null;
+    }
+}
+*/
+class Solution {
+    Node insertAtPos(Node head, int p, int x) {
+        // Create the new node
+        Node newNode = new Node(x);
+        
+        // If the list is empty or p is invalid (though constraints say p < size),
+        // we handle the basic case. Based on constraints 0 <= p < list size,
+        // the list is guaranteed to have at least p+1 nodes.
+        if (head == null) {
+            return newNode;
+        }
+        
+        // Traverse to the p-th node
+        Node current = head;
+        for (int i = 0; i < p; i++) {
+            if (current == null) {
+                // This case shouldn't happen given the constraints
+                return head;
+            }
+            current = current.next;
+        }
+        
+        // current is now the p-th node. We insert newNode after it.
+        
+        // Step 1: Set newNode's next to current's next
+        newNode.next = current.next;
+        
+        // Step 2: Set newNode's prev to current
+        newNode.prev = current;
+        
+        // Step 3: If current's next is not null, update its prev pointer
+        if (current.next != null) {
+            current.next.prev = newNode;
+        }
+        
+        // Step 4: Set current's next to newNode
+        current.next = newNode;
+        
+        return head;
+    }
+}
